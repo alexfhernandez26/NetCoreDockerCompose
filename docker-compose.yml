@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  mssql:
+    hostname: mssql
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "M1st2rPasswOrd!"
+      MSSQL_PID: Developer
+    ports:
+      - "14333:1433"
+
+  api:
+    hostname: api
+    image: pruebasmicroservicio:latest
+    depends_on:
+      - mssql
+    ports:
+      - "8080:80"
+#prueba
